@@ -10,6 +10,9 @@ Route::group(['middleware' => ['web']], function () {
     return redirect()->route('home')->with('info', 'You have signed up!');
   });
 
+  /**
+   * Authentication
+   */
   Route::get('/signup', [
     'uses' => '\Chatty\Http\Controllers\AuthController@getSignup',
     'as'   => 'auth.signup'
@@ -17,6 +20,15 @@ Route::group(['middleware' => ['web']], function () {
 
   Route::post('/signup', [
     'uses' => '\Chatty\Http\Controllers\AuthController@postSignup'
+  ]);
+
+  Route::get('/signin', [
+    'uses' => '\Chatty\Http\Controllers\AuthController@getSignin',
+    'as'   => 'auth.signin'
+  ]);
+
+  Route::post('/signin', [
+    'uses' => '\Chatty\Http\Controllers\AuthController@postSignin'
   ]);
 });
 
